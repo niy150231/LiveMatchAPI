@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+	- Team Data
+	- Date	: 2025. 01. 08.
+	- Author	: Bright
+-->
+
+<mapper namespace="livematch.score.data">
+
+	<insert id="insertScore">
+		INSERT INTO SCORES
+		(	
+		 GOAL_TIME
+         ,GOAL_SCORER_FIRST_NAME
+         ,GOAL_SCORER_LAST_NAME
+         ,TEAM_ID
+         ,FIXTURE_ID
+         ,REG_DATE
+		)VALUES
+   		(
+   		#{goalTime}
+   		,#{goalScorerFirstName}
+   		,#{goalScorerLastName}
+   		,#{teamId}
+   		,#{fixtureId}
+   		,TO_DATE(#{regDate}, '${@livematch.api.constants.ApiSystemConst@FORMAT_ORACLE_DATETIME}')
+   		)
+	</insert>
+    
+    <select id="selectScores" resultType="livematch.api.biz.score.model.ScoreVO">
+		SELECT  SCORE_ID
+		 GOAL_TIME
+         ,GOAL_SCORER_FIRST_NAME
+         ,GOAL_SCORER_LAST_NAME
+         ,TEAM_ID
+         ,FIXTURE_ID
+         ,REG_DATE
+		FROM	SCORES 
+		WHERE	SCORE_ID IS NOT NULL
+	</select>
+	
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+	- League Data
+	- Date	: 2025. 01. 07.
+	- Author	: Bright
+-->
+
+<mapper namespace="livematch.league.data">
+
+	<insert id="insertLeague">
+		INSERT INTO LEAGUES
+		(	LEAGUE_ID
+			, NAME
+			, COUNTRY
+			, REG_DATE
+		)VALUES
+   		(
+   		 #{leagueId}
+   		,#{name}
+   		,#{country}
+   		,TO_DATE(#{regDate}, '${@livematch.api.constants.ApiSystemConst@FORMAT_ORACLE_DATETIME}')
+   		)
+	</insert>
+    
+    <select id="selectLeagues" resultType="livematch.api.biz.league.model.LeagueVO">
+		SELECT  LEAGUE_ID
+				, NAME
+				,COUNTRY
+				,REG_DATE
+		FROM	LEAGUES 
+		WHERE	LEAGUE_ID IS NOT NULL
+	</select>
+	
+</mapper>

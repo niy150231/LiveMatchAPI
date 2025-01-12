@@ -1,0 +1,16 @@
+<Context reloadable="true" antiJARLocking="true" antiResourceLocking="true">
+
+	<Resource name="jdbc/livematchapi" auth="Container"
+		type="javax.sql.DataSource"
+		initialSize="5"
+		maxActive="5"
+		maxIdle="10"
+		maxWait="10000"
+		username="liu"
+		password="liu@2023@2023"
+		driverClassName="oracle.jdbc.OracleDriver"
+		url="jdbc:oracle:thin:@192.168.1.109:1521:orcl"
+		defaultAutoCommit="false"
+		validationQuery="select 1 from dual">
+	</Resource>
+</Context>

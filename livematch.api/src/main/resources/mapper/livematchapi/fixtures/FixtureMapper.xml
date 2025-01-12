@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+	- Team Data
+	- Date	: 2025. 01. 08.
+	- Author	: Bright
+-->
+
+<mapper namespace="livematch.fixture.data">
+
+	<insert id="insertFixture">
+		INSERT INTO FIXTURES
+		(	
+		 HOME_TEAM_ID
+         ,AWAY_TEAM_ID
+         ,LEAGUE_ID
+         ,MATCH_DATE
+         ,REG_DATE
+		)VALUES
+   		(
+   		#{homeTeamId}
+   		,#{awayTeamId}
+   		,#{leagueId}
+   		,TO_DATE(#{matchDate}, '${@livematch.api.constants.ApiSystemConst@FORMAT_ORACLE_DATETIME}')
+   		,TO_DATE(#{regDate}, '${@livematch.api.constants.ApiSystemConst@FORMAT_ORACLE_DATETIME}')
+   		)
+	</insert>
+    
+    <select id="selectFixtures" resultType="livematch.api.biz.fixture.model.FixtureVO">
+		SELECT  FIXTURE_ID
+				,HOME_TEAM_ID
+				,AWAY_TEAM_ID
+				,LEAGUE_ID
+                ,MATCH_DATE
+                ,REG_DATE
+		FROM	FIXTURES 
+		WHERE	FIXTURE_ID IS NOT NULL
+	</select>
+	
+</mapper>
